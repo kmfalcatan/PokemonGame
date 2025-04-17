@@ -1,0 +1,65 @@
+.landingContainer{
+  height: 100vh;
+  width: 100vw;
+  background-color: #F5F7FA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background{
+  position: absolute;
+  right: 0;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  outline: red dashed 1px;
+}
+
+.welcomeContainer{
+  outline: red dashed 1px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.288);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subWelcomeContainer{
+  outline: red dashed 1px;
+  width: 90%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.startButton{
+  width: 10rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #FFCB05;
+  color: #2D2D2D;
+  cursor: pointer;
+  transition: all 0.15s;
+  height: 2rem;
+}
+
+.startButton:hover{
+  background-color: #FFECA6;
+  border: solid #FFCB05 1px;
+}
+
+.startButton:active{
+  transform: scale(0.9);
+}
