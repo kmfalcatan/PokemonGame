@@ -1,0 +1,228 @@
+.profileContainer{
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 0.5rem;
+}
+
+.upgradePointsContainer{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  font-size: 1rem;
+}
+
+.points{
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  color: #2d2d2d;
+}
+
+span{
+  font-weight: bold;
+}
+
+.subProfileContainer{
+  height: 100%;
+  padding: 0 0.5rem ;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.infoContainer{
+  height: 100%;
+}
+
+.nameContainer{
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  height: 2rem;
+  color: #2d2d2d;
+}
+
+.levelContainer{
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  flex-direction: row;
+}
+
+.subLevelContainer{
+  font-size: 1rem;
+  color: #2d2d2d;
+}
+
+.levelIndicator{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  height: 100%;
+}
+
+.subLevelIndicator{
+  height: 0.6rem;
+  width: 5rem;
+  border-radius: 5rem;
+  background-color: #ffeeab; 
+}
+
+.indicator{
+  height: 100%;
+  border-radius: 5rem;
+  width: 5rem;
+  background-color: #FFCB05;
+}
+
+.numberContainer{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #2d2d2d;
+}
+
+.profilePicContainer{
+  height: 100%;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.subProfilePicContainer{
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.24);
+}
+
+  /*laptop*/
+  @media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    .profileContainer{
+      width: 100%;
+      height: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      padding: 0;
+    }
+    
+    .upgradePointsContainer{
+      outline: red dashed 1px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      margin-left: 1rem;
+    }
+    
+    span{
+      font-weight: bold;
+    }
+    
+    .subProfileContainer{
+      outline: red dashed 1px;
+      height: 100%;
+      padding: 0 0.5rem ;
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+    
+    .infoContainer{
+      outline: red dashed 1px;
+      height: 100%;
+    }
+    
+    .nameContainer{
+      outline: red dashed 1px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      height: 2rem;
+    }
+    
+    .levelContainer{
+      outline: red dashed 1px;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      align-items: center;
+      flex-direction: row;
+    }
+    
+    .subLevelContainer{
+      font-size: 1rem;
+      outline: red dashed 1px;
+    }
+    
+    .levelIndicator{
+      outline: red dashed 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
+      height: 100%;
+    }
+    
+    .subLevelIndicator{
+      outline: red dashed 1px;
+      height: 0.6rem;
+      width: 10rem;
+      border-radius: 5rem;
+      background-color: #ffeeab; 
+    }
+    
+    .indicator{
+      outline: red dashed 1px;
+      height: 100%;
+      border-radius: 5rem;
+      width: 5rem;
+      background-color: #FFCB05;
+    }
+    
+    .numberContainer{
+      outline: red dashed 1px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+    }
+    
+    .profilePicContainer{
+      outline: red dashed 1px;
+      height: 100%;
+      width: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0.5rem;
+    }
+    
+    .subProfilePicContainer{
+      height: 3rem;
+      width: 3rem;
+      border-radius: 0.5rem;
+      background-color: white;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.24);
+    }    
+  }
