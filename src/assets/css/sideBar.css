@@ -1,9 +1,9 @@
 .subSidebarContainer{
   display: grid;
   gap: 0.5rem;
-  grid-template-rows: 4rem 4rem;
+  grid-template-rows: 3rem 3rem;
   position: fixed;
-  z-index: 11;
+  z-index: 1;
   width: 100vw;
   background-color: #F5F7FA;
 }
@@ -20,7 +20,7 @@
   width: 100%;
   background-color: #FFCB05;
   display: flex;
-  justify-content: right;
+  justify-content: left;
   align-items: center;
   padding-right: 1rem;
 }
@@ -34,6 +34,121 @@
   outline: red dashed 1px;
 }
 
+.subHeaderContainer{
+  display: none;
+}
+
+body{
+  
+  transition: all 0.3s ease-in-out;
+}
+
+.menubarContainer{
+  padding-top: 2px;
+  width: 3.125rem;
+  height: 3rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.line{
+  border: solid 0.125rem;
+  width: 1.563rem;
+  margin-bottom: 0.313rem;
+  margin-top: 0.5rem;
+  margin-left: 0.563rem;
+  border-color: #2d2d2d;
+}
+
+.hidden{
+  display: none;
+}
+
+.change .line:nth-child(1) {
+  transform: rotate(-45deg) translate(-9px, 0.625rem);
+}
+
+.change .line:nth-child(2) {
+  opacity: 0;
+}
+
+.change .line:nth-child(3) {
+  transform: rotate(45deg) translate(-0.438rem, -0.5rem);
+}
+
+.subMenubarContainer {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 3.5rem;
+  background-color: #FFCB05;
+}
+
+.subMenubarContainer.fadeIn {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  flex-direction: column;
+  padding-top: 3.5rem;
+}
+
+.subMenubarContainer.fadeOut {
+  display: none;
+  opacity: 0;
+}
+
+.button2{
+  width: 100%;
+  background-color: transparent;
+  height: 2.5rem;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #2d2d2d;
+}
+
+.button2:hover{
+  border: 1px solid #DADADA;
+}
+
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px){
+  .menubarContainer{
+    display: none;
+  }
+
+  .mode{
+    position: absolute;
+    right: 0;
+  }
+
+  .subHeaderContainer{
+    outline: red dashed 1px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .button{
+    width: 7rem;
+    height: 2.5rem;
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    border-radius: 0.5rem;
+  }
+}
+
 /*laptop*/
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .subSidebarContainer{
@@ -44,6 +159,7 @@
     height: 100vh;
     width: 100vw;
     background-color: transparent;
+    z-index: -1;
   }
 
   .headerContainer{
@@ -59,6 +175,7 @@
 
   .profileContainer{
     outline: red dashed 1px;
+    z-index: 10;
   }
 
   .welcomeTrainerContainer{
