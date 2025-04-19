@@ -6,6 +6,7 @@ import Dashboard from "./components/dashboard";
 import Sidebar from "./components/sideBa";
 import History from "./components/history";
 import Team from "./components/team";
+import Pokemon from "./components/pokemon";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Layout content={<Dashboard />} />} />
         <Route path="/battle" element={<Layout content={<div>History Page</div>} />} />
-        <Route path="/pokemons" element={<Layout content={<div>Pokemons Page</div>} />} />
+        <Route path="/pokemons" element={<Layout content={<Pokemon/>} />} />
         <Route path="/team" element={<Layout content={<Team/>} />} />
         <Route path="/history" element={<Layout content={<History/>} />} />
 

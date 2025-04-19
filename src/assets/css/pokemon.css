@@ -1,0 +1,137 @@
+.pokemonContainer{
+  outline: red dashed 1px;
+}
+
+.subPokemonContainer{
+  outline: red dashed 1px;
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchContainer{
+  outline: red dashed 1px;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search{
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: solid #cccccc 1px;
+  background-color: white;
+}
+
+.addButton{
+  height: 2.5rem;
+  width: 8rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  background-color: #FFCB05;
+  color: #2D2D2D;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+}
+
+.addButton:hover{
+  background-color: #FFECA6;
+  border: solid #FFCB05 1px;
+}
+
+.addButton:active{
+  transform: scale(0.9);
+}
+
+.selectedTeamContainer{
+  outline: red dashed 1px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.subSelectedTeamContainer{
+  outline: red dashed 1px;
+  border-radius: 0.5rem;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  width: 95%;
+  padding: 0.5rem 0;
+}
+
+.selectedTeam{
+  outline: red dashed 1px;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+}
+
+.pokemons{
+  outline: red dashed 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.subPokemons{
+  outline: red dashed 1px;
+  height: 11rem;
+  width: 22.5rem;
+  position: relative;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.24);
+  background-color: #F08030;
+  display: flex;
+  flex-direction: row;
+  outline: red dashed 1px;
+  color: rgb(255, 216, 216);
+  font-size: 1.2rem;
+}
+
+.pokeInfoContainer{
+  outline: red dashed 1px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemonName{
+  outline: red dashed 1px;
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  font-size: 1.9rem;
+  color: white;
+  font-weight: bold;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pokemonImgContainer1{
+  outline: red dashed 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 11rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemonImg{
+  width: 95%;
+}
