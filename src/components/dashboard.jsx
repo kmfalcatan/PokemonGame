@@ -16,9 +16,9 @@ function Dashboard() {
 
   return(
     <div className="dashboardContainer">
-      <div className="subDashboardContainer">
+      <div className="subDashboardContainer" data-aos="fade" data-aos-delay="300">
         <div className="favContainer">
-          <div className="subFavContainer" data-aos="fade">
+          <div className="subFavContainer">
             <div className="fav">
               <div className="pokemonNameContainer">
                 <p>Charizard</p>
@@ -51,7 +51,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="displayTeamContainer" data-aos="fade" data-aos-delay="300">
+          <div className="displayTeamContainer">
             <div className="subDisplayTeamContainer">
               <div className="display">
                 <div className="teamNumberContainer">
@@ -92,7 +92,7 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="historyDisplayContainer" data-aos="fade" data-aos-delay="600" data-aos-offset="50">
+        <div className="historyDisplayContainer">
           <div className="subHistoryDisplayContainer">
             <div className="history">
               <div className="historyDisplayText">
@@ -100,7 +100,7 @@ function Dashboard() {
               </div>
               
               <div className="historyDisplayText">
-                <p>Battle Record</p>
+                <p>Status</p>
               </div>
             </div>
           
@@ -114,18 +114,6 @@ function Dashboard() {
 
                 <div className="battleHistory">
                   <p>Loss</p>
-                </div>
-              </div>
-
-              <div className="historyDisplay2">
-                <div className="subHistoryDisplay">
-                  <div className="subTeams1">
-
-                  </div>
-                </div>
-
-                <div className="battleHistory">
-                  <p>Win</p>
                 </div>
               </div>
             </div>

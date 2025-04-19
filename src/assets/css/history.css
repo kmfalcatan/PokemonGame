@@ -1,0 +1,139 @@
+.historyContainer{
+  outline: red dashed 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  height: 100vh;
+}
+
+.subHistoryContainer{
+  outline: red dashed 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.subHistoryContainer1{
+  outline: red dashed 1px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 8rem;
+  overflow: auto;
+  padding-bottom: 1rem;
+}
+
+.textHistoryContainer{
+  outline: red dashed 1px;
+  color: #2d2d2d;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.textHistoryContainer1{
+  outline: red dashed 1px;
+  color: #2d2d2d;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.recordContainer{
+  outline: red dashed 1px;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  background-color: #E5FFE6;
+  border-radius: 0.5rem;
+  border: solid #00FF11 1px;
+}
+
+.subRecordContainer{
+  outline: red dashed 1px;
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pointsContainer{
+  outline: red dashed 1px;
+  gap: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text1{
+  width: 3rem;
+  outline: red dashed 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationContainer{
+  outline: red dashed 1px;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  z-index: 13;
+  bottom: 0.5rem;
+}
+
+.paginationButton{
+  outline: red dashed 1px;
+  height: 2.5rem;
+  width: 5rem;
+  font-size: 1.2rem;
+  color: #2d2d2d;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #FFCB05;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.paginationButton:hover{
+  background-color: #E6B800;
+  transform: scale(1.1);
+}
+
+.paginationButton:active{
+  transform: scale(1);
+  background-color: #FFCB05;
+}
+
+.paginationText{
+  font-size: 1.2rem;
+  color: #2d2d2d;
+}
+
+/*laptop*/
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .historyContainer{
+    margin-left: 17rem;
+  }
+
+  .subHistoryContainer1{
+    margin-top: 5rem;
+    overflow: auto;
+  }
+
+  .paginationContainer{
+    display: flex;
+  }
+}
