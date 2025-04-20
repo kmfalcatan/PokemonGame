@@ -52,6 +52,7 @@
   cursor: pointer;
   transition: all 0.15s;
   height: 2rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
 .startButton:hover{

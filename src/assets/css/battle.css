@@ -1,0 +1,306 @@
+.battleContainer{
+  outline: red dashed 1px;
+  position: relative;
+  height: 100vh;
+}
+
+.battleHeaderContainer{
+  outline: red dashed 1px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  background-color: #FFCB05;
+  position:fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.subBattleHeaderContainer{
+  outline: red dashed 1px;
+  height: 100%;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subBattleContainer{
+  outline: red dashed 1px;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.battleTextContainer{
+  outline: red dashed 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.displayPokeminInfoContainer{
+  outline: red dashed 1px;
+}
+
+.teamDisplayContainer{
+  outline: red dashed 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subTeamDisplayContainer{
+  outline: red dashed 1px;
+  width: 95%;
+  background-color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.teamDisplay{
+  outline: red dashed 1px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.subTeamTextDisplay{
+  font-size: 1.2rem;
+}
+
+.subTeamDisplay{
+  outline: red dashed 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  background-color: #F5F7FA;
+  border-radius: 0.5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.teamDisplay1{
+  outline: red dashed 1px;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.displayPokemon1{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.subDisplayPokemon1{
+  outline: red dashed 1px;
+  height: 13rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nameContainer1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subNameContainer1{
+  height: 2.5rem;
+  background-color: #F08030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.pokemonInfoContainer3{
+  outline: red dashed 1px;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutPokemonContainer1{
+  outline: red dashed 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 90%;
+  height: 100%;
+  color: #2d2d2d;
+}
+
+.basicStatsContainer1{
+  outline: red dashed 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.selectedTeamContainer{
+  outline: red dashed1 px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.subSelectedTeamContainer1{
+  outline: red dashed 1px;
+  background-color: white;
+  padding: 0.5rem 0;
+  width: 95%;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.selectedTeam1{
+  outline: red dashed 1px;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.removeContainer{
+  outline: red dashed 1px;
+  position: absolute;
+  top: -0.3rem;
+  right: -0.3rem;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 2rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1rem;
+}
+
+.gameStartButtonContainer{
+  outline: red dashed 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.browsContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.checkButton{
+  height: 1rem;
+  width: 1rem;
+  position: absolute;
+  right: 0.5rem;
+  z-index: 1;
+}
+
+.containerOfPokemon{
+  outline: red dashed 1px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 20rem;
+}
+
+/*laptop*/
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .displayPokeminInfoContainer{
+    flex-direction: row;
+    display: flex;
+    gap: 0;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+  }
+
+  .subBattleContainer{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .infoIcon{
+    display: none;
+  }
+
+  .displayPokemon1{
+    flex-direction: row;
+    margin: 0;
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .teamDisplayContainer{
+    width: 100%;
+    justify-content: right;
+  }
+
+  .subDisplayPokemon1{
+    width: 20rem;
+    height: 100%;
+  }
+
+  .pokemonInfoContainer3{
+    width: 100%;
+    margin: 0;
+    gap: 1rem;
+  }
+
+  .aboutPokemonContainer1, .subBasicStatsContainer, .subTeamDisplayContainer{
+    width: 100%;
+  }
+
+  .subTeamDisplayContainer{
+    height: 22rem;
+  }
+
+  .basicStats{
+    text-align: right;
+  }
+
+  .subAboutPokemonContainer{
+    width: 8rem;
+    font-weight: normal;
+  }
+}

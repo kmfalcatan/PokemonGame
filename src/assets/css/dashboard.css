@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.24);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
 .pokemonNameContainer{
@@ -128,7 +128,7 @@
   width: 90%;
   border-radius: 0.5rem;
   background-color: white;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.24);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
   display: flex;
   justify-content: center;
 }
@@ -153,9 +153,9 @@
   width: 100%;
   outline: red dashed 1px;
   padding: 0.5rem 0;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
   border-radius: 0.5rem;
-  background-color: #FFF9E5;
-  border: solid #FFCB05 1px;
+  background-color: #F5F7FA;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,6 +168,7 @@
   height: 2.5rem;
   width: 2.5rem;
   border-radius: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
 .historyDisplayContainer{
@@ -190,7 +191,7 @@
   flex-direction: column;
   gap: 0.5rem;
   /* overflow: auto; */
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.24);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
 .historyDisplayText{
@@ -226,6 +227,7 @@
   justify-content: center;
   align-items: center;
   background-color: #FFE5E5;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
 .subHistoryDisplay{
