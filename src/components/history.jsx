@@ -45,6 +45,8 @@ function History(){
           </div>
         </div>
 
+        
+        
         <div className="recordContainer">
           <div className="subRecordContainer">
             <div className="subTeams">

@@ -52,6 +52,7 @@
   background-color: #E5FFE6;
   border-radius: 0.5rem;
   border: solid #00FF11 1px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
 .subRecordContainer{
