@@ -179,7 +179,9 @@ function Battle() {
           </div>
 
           <div className="gameStartButtonContainer">
-            <button className="startButton">Start Battle</button>
+            <button className="startButton" onClick={() => navigate("/battleSimulation")}>
+              Start Battle
+            </button>
           </div>
         </div>
 

@@ -1,0 +1,287 @@
+.battleSimulationContainer{
+  height: 100vh;
+}
+
+.pokemonHeaderContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.subPokemonHeaderContainer{
+  width: 95%;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pokemonHeader{
+  height: 3rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: white;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  overflow: auto;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.pokemonHeader1{
+  height: 3rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: white;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  overflow: auto;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.subPokemonHeader{
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.roundContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #2d2d2d;
+  width: 3rem;
+}
+
+.roundNumber{
+  font-weight: bold;
+}
+
+.scoreContainer{
+  margin-top: 0.5rem;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.subScoreContainer{
+  height: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.subScoreContainer2{
+  height: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.score{
+  height: 1rem;
+  width: 1rem;
+  border-radius: 2rem;
+  background-color: #E9E9E9;
+}
+.subScoreContainer1{
+  height: 1rem;
+  width: 7rem;
+}
+
+.battleSimulation{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.subBattleSimulation{
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.subBattleSimulation1{
+  display: grid;
+  grid-template-rows: 1fr 3rem;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  font-size: 1.5rem;
+}
+
+.status{
+  text-align: center;
+}
+
+.buttonContainer3{
+  gap: 0.5rem;
+  display: flex;
+}
+
+.start{
+  width: 3rem;
+  border-radius: 0.5rem;
+  border: none;
+  height: 2rem;
+  background-color: #FFCB05;
+  color: #2D2D2D;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.start:hover{
+  background-color: #FFECA6;
+  border: solid #FFCB05 1px;
+}
+
+.start:active{
+  transform: scale(0.9);
+}
+
+.displayPokemonContainer4{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.subDisplayPokemonContainer4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.displayPokemon4{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+}
+
+.pokemonNameContainer4{
+  outline: red dashed1 px;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.pokemonName4{
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.3rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: #2D2D2D;
+}
+
+.pokemonInfoContainer4{
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  height: 10rem;
+  overflow: auto;
+  background-color: white;
+  border-radius: 0.5rem 0 0 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.pokemonInfoContainer6{
+  width: 100%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  height: 10rem;
+  overflow: auto;
+  background-color: white;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.subPokemonInfoContainer4{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #2D2D2D;
+  text-align: left;
+  font-size: 0.6rem;
+}
+
+.subPokemonInfoContainer7{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #2D2D2D;
+  text-align: right;
+  font-size: 0.6rem;
+}
+
+.subPokemonInfoContainer6{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #2D2D2D;
+  text-align: right;
+  font-size: 0.6rem;
+}
+
+.subPokemonInfoContainer5{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #2D2D2D;
+  text-align: left;
+  font-size: 0.6rem;
+}
+
+
+@media only screen and (min-width: 600px){
+  .subPokemonInfoContainer6, .subPokemonInfoContainer4, .subPokemonInfoContainer5, .subPokemonInfoContainer7{
+    font-size: 1.2rem;
+  }
+
+  .start{
+    width: 5rem;
+    font-size: 1.2rem;
+  }
+
+  .status{
+    font-size: 2rem;
+  }
+}
