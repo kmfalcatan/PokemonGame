@@ -5,6 +5,8 @@ import Back from "../assets/img/back.svg";
 import PokemonImg from "../assets/img/pokemonImg.svg";
 import Remove from "../assets/img/x.svg";
 import InfoIcon from "../assets/img/info.svg";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Battle() {
   const navigate = useNavigate();
@@ -32,14 +34,21 @@ function Battle() {
       setShowInfo((prev) => !prev);
     }
   };
+    
+      useEffect(() => {
+        AOS.init({
+          duration: 1000,
+          once: false,
+        });
+      }, []);
 
   return (
-    <div className="battleContainer">
+    <div className="battleContainer" data-aos="fade" data-aos-delay="300">
       <div className="battleHeaderContainer">
         <div className="subBattleHeaderContainer">
           <img
             className="backIcon"
-            onClick={() => navigate("/pokemons")}
+            onClick={() => navigate("/dashboard")}
             src={Back}
             alt="Back"
           />
@@ -54,6 +63,15 @@ function Battle() {
         <div className="displayPokeminInfoContainer">
           <div className="teamDisplayContainer">
             <div className="subTeamDisplayContainer">
+              <div className="teamDisplay">
+                <div className="subTeamTextDisplay">
+                  <p>Team #1</p>
+                </div>
+                <div className="subTeamDisplay">
+                  <div className="teamDisplay1"></div>
+                </div>
+              </div>
+
               <div className="teamDisplay">
                 <div className="subTeamTextDisplay">
                   <p>Team #1</p>
