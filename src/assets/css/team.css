@@ -1,11 +1,9 @@
 .teamContainer{
-  outline: red dashed 1px;
   height: 100vh;
   display: flex;;
 }
 
 .subTeamContainer{
-  outline: red dashed 1px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -17,19 +15,16 @@
 }
 
 .team{
-  outline: red dashed 1px;
   width: 95%;
 }
 
 .teamText{
-  outline: red dashed 1px;
   width: 100%;
   font-size: 1.2rem;
   color: #2d2d2d;
 }
 
 .teamPokemonContainer{
-  outline: red dashed 1px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -46,7 +41,6 @@
 }
 
 .subTeamPokomonContainer{
-  outline: red dashed 1px;
   padding: 0.5rem;
   width: 100%;
   flex-wrap: wrap;
@@ -56,7 +50,6 @@
 }
 
 .pokemonTeam{
-  outline: red dashed 1px;
   height: 2.5rem;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
   width: 2.5rem;
@@ -64,14 +57,12 @@
 }
 
 .editContainer{
-  outline: red dashed 1px;
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
 
 .subEditContainer{
-  outline: red dashed 1px;
   height: 100%;
   display: flex;
   align-items: center;

@@ -1,9 +1,22 @@
 import "../assets/css/battleSimulation.css";
 import PokemonImg from "../assets/img/pokemonImg.svg";
+import { useNavigate } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 function BattleSimulation() {
+  const navigate = useNavigate();
+  
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        once: false,
+      });
+    }, []);
+
   return(
-    <div className="battleSimulationContainer">
+    <div className="battleSimulationContainer" data-aos="fade" data-aos-delay="300">
       <div className="pokemonHeaderContainer">
         <div className="subPokemonHeaderContainer">
           <div className="pokemonHeader">
@@ -132,7 +145,7 @@ function BattleSimulation() {
           <p className="status">Fight</p>
           <div className="buttonContainer3">
             <button className="start">Start</button>
-            <button className="start">Cancel</button>
+            <button className="start" onClick={() => navigate("/dashboard")}>Cancel</button>
           </div>
         </div>
         
@@ -180,6 +193,52 @@ function BattleSimulation() {
               <p>Weight</p>
               <p>Type</p>
               <p>Abilities</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="resultContainer">
+        <div className="subResultContainer">
+          <div className="resultText">
+            <p>You Won!!</p>
+          </div>
+
+          <div className="resultPointsContainer">
+            <div className="subResultPointsContainer">
+              <div className="result">
+                <p>Exp:</p>
+                <p>+20</p>
+              </div>
+            </div>
+
+            <div className="subResultPointsContainer">
+              <div className="result">
+                <p>Points:</p>
+                <p>0</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="addPointsContainer">
+            <div className="subAddPointsContainer">
+              <div className="addLvlContainer">
+                <div className="subAddLvlContainer">
+
+                </div>
+              </div>
+            </div>
+
+            <div className="pointsTextContainer">
+              <p>Lvl: 3</p>
+              <p>50/100</p>
+            </div>
+          </div>
+
+          <div className="buttonContainer5">
+            <div className="subButtonContainer5">
+              <button className="button5">Play Again</button>
+              <button className="button5">Home</button>
             </div>
           </div>
         </div>

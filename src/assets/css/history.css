@@ -1,5 +1,4 @@
 .historyContainer{
-  outline: red dashed 1px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -8,7 +7,6 @@
 }
 
 .subHistoryContainer{
-  outline: red dashed 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,7 +14,6 @@
 }
 
 .subHistoryContainer1{
-  outline: red dashed 1px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -28,7 +25,6 @@
 }
 
 .textHistoryContainer{
-  outline: red dashed 1px;
   color: #2d2d2d;
   display: flex;
   flex-direction: row;
@@ -36,7 +32,6 @@
 }
 
 .textHistoryContainer1{
-  outline: red dashed 1px;
   color: #2d2d2d;
   display: flex;
   flex-direction: row;
@@ -44,7 +39,6 @@
 }
 
 .recordContainer{
-  outline: red dashed 1px;
   width: 95%;
   display: flex;
   flex-direction: row;
@@ -56,7 +50,6 @@
 }
 
 .subRecordContainer{
-  outline: red dashed 1px;
   width: 100%;
   padding: 0.5rem 0.5rem;
   flex-wrap: wrap;
@@ -67,7 +60,6 @@
 }
 
 .pointsContainer{
-  outline: red dashed 1px;
   gap: 0.5rem;
   display: flex;
   justify-content: center;
@@ -76,14 +68,12 @@
 
 .text1{
   width: 3rem;
-  outline: red dashed 1px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .paginationContainer{
-  outline: red dashed 1px;
   width: 100%;
   margin-bottom: 1rem;
   display: none;
@@ -96,7 +86,6 @@
 }
 
 .paginationButton{
-  outline: red dashed 1px;
   height: 2.5rem;
   width: 5rem;
   font-size: 1.2rem;

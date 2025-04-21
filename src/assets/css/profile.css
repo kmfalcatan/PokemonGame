@@ -122,7 +122,6 @@ span{
     }
     
     .upgradePointsContainer{
-      outline: red dashed 1px;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -136,7 +135,6 @@ span{
     }
     
     .subProfileContainer{
-      outline: red dashed 1px;
       height: 100%;
       padding: 0 0.5rem ;
       display: flex;
@@ -145,12 +143,10 @@ span{
     }
     
     .infoContainer{
-      outline: red dashed 1px;
       height: 100%;
     }
     
     .nameContainer{
-      outline: red dashed 1px;
       font-size: 1rem;
       display: flex;
       align-items: center;
@@ -159,7 +155,6 @@ span{
     }
     
     .levelContainer{
-      outline: red dashed 1px;
       height: 2rem;
       display: flex;
       justify-content: center;
@@ -170,11 +165,9 @@ span{
     
     .subLevelContainer{
       font-size: 1rem;
-      outline: red dashed 1px;
     }
     
     .levelIndicator{
-      outline: red dashed 1px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -183,7 +176,6 @@ span{
     }
     
     .subLevelIndicator{
-      outline: red dashed 1px;
       height: 0.6rem;
       width: 10rem;
       border-radius: 5rem;
@@ -191,7 +183,6 @@ span{
     }
     
     .indicator{
-      outline: red dashed 1px;
       height: 100%;
       border-radius: 5rem;
       width: 5rem;
@@ -199,7 +190,6 @@ span{
     }
     
     .numberContainer{
-      outline: red dashed 1px;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -208,7 +198,6 @@ span{
     }
     
     .profilePicContainer{
-      outline: red dashed 1px;
       height: 100%;
       width: 4rem;
       display: flex;
