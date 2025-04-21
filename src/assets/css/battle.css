@@ -203,6 +203,16 @@
   justify-content: center;
   align-items: center;
   padding: 0.1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.removeContainer:hover{
+  transform: scale(1.05);
+}
+
+.removeContainer:active{
+  transform: scale(1);
 }
 
 .gameStartButtonContainer{

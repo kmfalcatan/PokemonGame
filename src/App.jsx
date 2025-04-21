@@ -9,6 +9,7 @@ import Team from "./components/team";
 import Pokemon from "./components/pokemon";
 import PokemonModal from "./components/pokemonModal";
 import Battle from "./components/battle";
+import BattleSimulation from "./components/battleSimulation";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/history" element={<Layout content={<History />} />} />
 
         <Route path="/battle" element={<Battle/>} />
+
+        <Route path="/battleSimulation" element={<BattleSimulation />} />
 
         {/* No Sidebar for PokemonModal */}
         <Route path="/pokemonModal" element={<PokemonModal />} />
