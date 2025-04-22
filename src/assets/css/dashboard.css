@@ -59,7 +59,7 @@
 
 .pokeId{
   padding-left: 0.5rem;
-  color: rgb(255, 216, 216);
+  color: rgba(255, 255, 255, 0.603);
   font-size: 1.2rem;
 }
 
@@ -68,6 +68,13 @@
   padding-left: 0.5rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.favInner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 .subTypeContainer{

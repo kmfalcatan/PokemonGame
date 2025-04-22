@@ -3,9 +3,6 @@ import "../assets/css/profile.css"
 function Profile() {
   return(
     <div className="profileContainer">
-      <div className="upgradePointsContainer">
-        <p>Upgrade Points: <span>9</span></p>
-      </div>
 
       <div className="subProfileContainer">
         <div className="infoContainer">

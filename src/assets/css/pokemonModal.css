@@ -14,7 +14,13 @@
 }
 
 .subModalHeaderContainer{
-  width: 3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.statsPokemonContainer{
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -78,7 +84,7 @@
 
 .typeContainer3{
   background-color: #F08030;
-  width: 4.5rem;
+  padding: 0 0.5rem;
   text-align: center;
   color: white;
   border-radius: 0.5rem;
@@ -171,6 +177,7 @@
   animation: loadBar 1.2s ease-out forwards;
   transform: scaleX(0);
   transform-origin: left;
+  max-width: 100%;
 }
 
 @keyframes loadBar {
