@@ -81,12 +81,16 @@ function Pokemon() {
   
         if (result.isConfirmed) {
           try {
+            const teamData = {
+              team: selectedTeam, // Full Pokémon info included
+            };
+  
             const response = await fetch("http://localhost:5000/teams", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ team: selectedTeam }),
+              body: JSON.stringify(teamData),
             });
   
             if (response.ok) {
@@ -117,8 +121,7 @@ function Pokemon() {
         });
       }
     }
-  };
-  
+  };  
 
   const handleCancelTeam = () => {
     setSelectedTeam([]);
@@ -173,7 +176,9 @@ function Pokemon() {
   };
 
   return (
-    <div className="pokemonContainer" data-aos="fade">
+    <>
+    <ToastContainer />
+      <div className="pokemonContainer" data-aos="fade">
       <div className="subPokemonContainer">
         <div className="searchContainer">
           <input
@@ -420,9 +425,10 @@ function Pokemon() {
             </div>
           </div>
         </div>
-      )}<ToastContainer />
+      )}
 
     </div>
+    </>
   );
 }
 

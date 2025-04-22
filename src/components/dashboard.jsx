@@ -10,6 +10,8 @@ function Dashboard() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [pokemonData, setPokemonData] = useState(null);
   const [prevPokemonData, setPrevPokemonData] = useState(null);
+  const [savedTeams, setSavedTeams] = useState([]);
+
 
   // AOS init
   useEffect(() => {
@@ -29,6 +31,20 @@ function Dashboard() {
     };
     fetchPokemonList();
   }, []);
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/teams");
+        const data = await res.json();
+        setSavedTeams(data);
+      } catch (err) {
+        console.error("Failed to fetch saved teams", err);
+      }
+    };
+  
+    fetchTeams();
+  }, []);  
 
   // Fetch individual Pokémon data
   useEffect(() => {
@@ -137,18 +153,37 @@ function Dashboard() {
             </div>
           </div>
 
-          {/* Team display stays unchanged */}
           <div className="displayTeamContainer">
             <div className="subDisplayTeamContainer">
               <div className="display">
-                <div className="teamNumberContainer">
-                  <p>Team #1</p>
+              {savedTeams.map((teamData, teamIndex) => (
+                <div className="display" key={teamIndex}>
+                  <div className="teamNumberContainer">
+                    <p>Team #{teamIndex + 0}</p>
+                  </div>
+
+                  <div className="teams">
+                    {teamData.team.map((pokemon, pokeIndex) => {
+                      const primaryType = pokemon.types?.[0]?.type?.name;
+                      const bgColor = typeColors[primaryType] || "#ccc";
+
+                      return (
+                        <div className="subTeams" key={pokeIndex} style={{ backgroundColor: bgColor }}>
+                          <img
+                            src={
+                              pokemon.sprites?.other?.["official-artwork"]?.front_default ||
+                              pokemon.sprites?.front_default
+                            }
+                            alt={pokemon.name}
+                            className="pokemonImg"
+                          />
+                        </div>
+                      );
+                    })}
+
+                  </div>
                 </div>
-                <div className="teams">
-                  {Array(6).fill(0).map((_, idx) => (
-                    <div className="subTeams" key={idx}></div>
-                  ))}
-                </div>
+              ))}
               </div>
             </div>
             <div className="titleContainer">

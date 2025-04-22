@@ -36,7 +36,17 @@
   padding: 0.5rem 0;
 }
 
-.displayPokeminInfoContainer{
+.click{
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.click:hover{
+  transform: scale(1.05);
+}
+
+.click:active{
+  transform: scale(1);
 }
 
 .teamDisplayContainer{
@@ -157,7 +167,6 @@
 }
 
 .selectedTeamContainer{
-  outline: red dashed 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,10 +176,16 @@
   width: 100%;
 }
 
+.select0{
+  font-size: 1.5rem;
+}
+
 .subSelectedTeamContainer1{
   background-color: white;
   padding: 0.5rem 0;
   width: 95%;
+  gap: 0.5rem;
+  height: 4rem;
   border-radius: 0.5rem;
   justify-content: center;
   align-items: center;
