@@ -1,5 +1,4 @@
-.pokemonContainer{
-}
+
 
 .subPokemonContainer{
   margin-top: 8rem;
@@ -52,14 +51,15 @@
   transform: scale(0.9);
 }
 
-.selectedTeamContainer{
+.selectedTeamContainer6 {
   width: 100%;
   display: flex;
+  outline: red dashed 1px;
   justify-content: center;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
-.subSelectedTeamContainer{
+.subSelectedTeamContainer6 {
   border-radius: 0.5rem;
   background-color: white;
   justify-content: center;
@@ -68,14 +68,74 @@
   gap: 0.5rem;
   width: 95%;
   padding: 0.5rem 0;
+  overflow: hidden; /* Prevents overflow during transition */
 }
 
-.selectedTeam{
+.selectedTeam6 {
   height: 3rem;
   width: 3rem;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
   border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
+
+.saveButton9{
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.pokemonImg6{
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 0;
+}
+
+/* Using keyframes for animation */
+@keyframes slide-fade-in {
+  0% {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    max-height: 10rem; /* Set max-height large enough to accommodate content */
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ability{
+  display: flex;
+  flex-direction: row;
+}
+
+@keyframes slide-fade-out {
+  0% {
+    height: 4re;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Apply the animation to the container based on showTeam */
+.slide-fade-in {
+  animation: slide-fade-in 0.3s ease-in-out forwards;
+}
+
+.slide-fade-out {
+  animation: slide-fade-out 0.3s ease-in-out forwards;
+}
+
 
 .pokemons{
   display: flex;
@@ -103,18 +163,6 @@
 .transition {
   transition: all 0.4s ease;
   overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.slide-fade-in {
-  max-height: 500px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.slide-fade-out {
   max-height: 0;
   opacity: 0;
   transform: translateY(-10px);

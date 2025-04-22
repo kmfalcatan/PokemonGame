@@ -168,11 +168,6 @@ function SideBar() {
 
       {/* Profile Container */}
       <div className="profileContainer">
-        <div className="upgradePointsContainer">
-          <p className="points">
-            Points: <span>9</span>
-          </p>
-        </div>
 
         <div className="subProfileContainer">
           <div className="infoContainer">
