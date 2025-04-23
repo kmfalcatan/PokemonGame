@@ -135,6 +135,7 @@
 
 .subBattleSimulation1{
   display: grid;
+  width: 6.5rem;
   grid-template-rows: 1fr 3rem;
   justify-content: center;
   align-items: center;
@@ -144,11 +145,14 @@
 
 .status{
   text-align: center;
+  width: 6.5rem;
 }
 
 .buttonContainer3{
   gap: 0.5rem;
   display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .start{
@@ -416,6 +420,10 @@
     margin-top: 4rem;
   }
 
+  .subBattleSimulation1{
+    width: 10.5rem;
+  }
+
   .start{
     width: 5rem;
     font-size: 1.2rem;
@@ -423,5 +431,6 @@
 
   .status{
     font-size: 2rem;
+    width: 10.5rem;
   }
 }
