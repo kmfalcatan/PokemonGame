@@ -2,24 +2,31 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/battle.css";
 import Back from "../assets/img/back.svg";
-import PokemonImg from "../assets/img/pokemonImg.svg";
 import Remove from "../assets/img/x.svg";
-import InfoIcon from "../assets/img/info.svg";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Swal from "sweetalert2"; // SweetAlert2 for confirmation
+import Swal from "sweetalert2"; 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Styles for toast notifications
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function Battle() {
   const navigate = useNavigate();
   const [showInfo, setShowInfo] = useState(false);
   const [savedTeams, setSavedTeams] = useState([]);
-  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonList, setPokemonList] = useState([]); 
   const [pokemonDetails, setPokemonDetails] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState(null); // to hold selected Pokémon details
+  const [selectedPokemon, setSelectedPokemon] = useState(null); 
+  const [searchTerm, setSearchTerm] = useState(""); 
   const pokemonInfoRef = useRef(null);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value); 
+  };
+
+  const filteredPokemon = pokemonDetails.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleStartBattle = async () => {
     if (selectedTeam.length !== 6) {
@@ -87,7 +94,7 @@ function Battle() {
   };    
     
   const handleScrollToTop = () => {
-    console.log(pokemonInfoRef.current); // Check if the ref is correct
+    console.log(pokemonInfoRef.current); 
     if (pokemonInfoRef.current) {
       pokemonInfoRef.current.scrollIntoView({
         behavior: "smooth",
@@ -129,23 +136,22 @@ function Battle() {
    
 
   useEffect(() => {
-    // Fetch Pokémon details (adjust to your API endpoint)
     const fetchPokemons = async () => {
       try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500");
         const data = await res.json();
         const promises = data.results.map((pokemon) =>
           fetch(pokemon.url).then((res) => res.json())
         );
         const results = await Promise.all(promises);
-        setPokemonDetails(results);
+        setPokemonDetails(results); 
       } catch (err) {
         console.error("Error fetching Pokémon details:", err);
       }
     };
-
+  
     fetchPokemons();
-  }, []);
+  }, []);  
 
 useEffect(() => {
   const fetchDetails = async () => {
@@ -202,17 +208,16 @@ useEffect(() => {
 }, []);
 
 
-  // Automatically show info on desktop (1025px and above)
   useEffect(() => {
     const checkScreenSize = () => {
       if (window.innerWidth >= 1025) {
-        setShowInfo(true); // show info by default on desktop
+        setShowInfo(true); 
       } else {
-        setShowInfo(false); // hide on smaller screens
+        setShowInfo(false); 
       }
     };
 
-    checkScreenSize(); // initial check
+    checkScreenSize(); 
 
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
@@ -302,7 +307,7 @@ useEffect(() => {
                   backgroundColor:
                     selectedPokemon && selectedPokemon.types.length > 0
                       ? typeColors[selectedPokemon.types[0].type.name] || "#ddd"
-                      : "#F5F7FA", boxShadow: "0px 0px 0px #F5F7FA" // Default color if no types available
+                      : "#F5F7FA", boxShadow: "0px 0px 0px #F5F7FA" 
                 }}
               >
                   {selectedPokemon && <p>{selectedPokemon.name}</p>}
@@ -330,7 +335,7 @@ useEffect(() => {
 
                     <div className="type4">
                       {selectedPokemon.types.map((type, idx) => {
-                        const bgColor = typeColors[type.type.name] || "#ddd"; // Default color if type not found
+                        const bgColor = typeColors[type.type.name] || "#ddd"; 
                         return (
                           <p
                             key={idx}
@@ -348,7 +353,7 @@ useEffect(() => {
 
                     <div className="type4">
                       {selectedPokemon.abilities.map((ability, idx) => {
-                        const bgColor = "#ddd"; // Default color for abilities (can customize further if needed)
+                        const bgColor = "#ddd"; 
                         return (
                           <p
                             key={idx}
@@ -432,54 +437,61 @@ useEffect(() => {
           </div>
 
           <p className="select0">Select a Pokemon</p>
+          <input
+              type="text"
+              className="searchPokemon"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearch} // Bind search handler
+            />
         </div>
 
         <div className="browsContainer">
-      {pokemonDetails.map((pokemon, index) => {
-        const primaryType = pokemon.types?.[0]?.type?.name;
-        const bgColor = typeColors[primaryType] || "#ccc";
+          {filteredPokemon.map((pokemon, index) => {
+            const primaryType = pokemon.types?.[0]?.type?.name;
+            const bgColor = typeColors[primaryType] || "#ccc";
 
-        return (
-          <div
-            className="subPokemons"
-            key={index}
-            style={{ backgroundColor: bgColor }}
-            onClick={() => {
-              handleSelectPokemon(pokemon); // Add click handler to select the Pokémon
-              handleScrollToTop(); // Scroll to the Pokémon info section
-            }}
-          >
-            <div className="pokeInfoContainer">
-              <div className="pokemonName">
-                <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
-              </div>
-
-              <div className="pokeId">
-                <p>#{pokemon.id.toString().padStart(3, "0")}</p>
-              </div>
-
-              <div className="typeContainer1">
-                {pokemon.types.map((typeObj, idx) => (
-                  <div className="subTypeContainer" key={idx}>
-                    <p>{typeObj.type.name.charAt(0).toUpperCase() + typeObj.type.name.slice(1)}</p>
+            return (
+              <div
+                className="subPokemons"
+                key={index}
+                style={{ backgroundColor: bgColor }}
+                onClick={() => {
+                  handleSelectPokemon(pokemon);
+                  handleScrollToTop();
+                }}
+              >
+                <div className="pokeInfoContainer">
+                  <div className="pokemonName">
+                    <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            <div className="pokemonImgContainer1">
-              <img
-                className="pokemonImg"
-                src={
-                  pokemon.sprites.other["official-artwork"].front_default ||
-                  pokemon.sprites.front_default
-                }
-                alt={pokemon.name}
-              />
-            </div>
-          </div>
-        );
-      })}
+                  <div className="pokeId">
+                    <p>#{pokemon.id.toString().padStart(3, "0")}</p>
+                  </div>
+
+                  <div className="typeContainer1">
+                    {pokemon.types.map((typeObj, idx) => (
+                      <div className="subTypeContainer" key={idx}>
+                        <p>{typeObj.type.name.charAt(0).toUpperCase() + typeObj.type.name.slice(1)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pokemonImgContainer1">
+                  <img
+                    className="pokemonImg"
+                    src={
+                      pokemon.sprites.other["official-artwork"].front_default ||
+                      pokemon.sprites.front_default
+                    }
+                    alt={pokemon.name}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

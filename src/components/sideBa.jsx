@@ -10,6 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Profile from "../assets/img/profilePic.svg"
 
 function SideBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -145,7 +146,7 @@ function SideBar() {
               <img src={Pokemon} className="icon" alt="" />
             </div>
           </div>
-
+{/* 
           <div className="subButtonContainer">
             <div className="textButton" onClick={() => navigate("/team")}>
               <p className="text">Team</p>
@@ -153,7 +154,7 @@ function SideBar() {
             <div className="iconContainer">
               <img src={Team} className="icon" alt="" />
             </div>
-          </div>
+          </div> */}
 
           <div className="subButtonContainer">
             <div className="textButton" onClick={() => navigate("/history")}>
@@ -174,26 +175,12 @@ function SideBar() {
             <div className="nameContainer">
               <p>Khriz</p>
             </div>
-
-            <div className="levelContainer">
-              <div className="subLevelContianer">
-                <p>Lvl 3</p>
-              </div>
-
-              <div className="levelIndicator">
-                <div className="subLevelIndicator">
-                  <div className="indicator"></div>
-                </div>
-              </div>
-
-              <div className="numberContainer">
-                <p>50/100</p>
-              </div>
-            </div>
           </div>
 
           <div className="profilePicContainer">
-            <div className="subProfilePicContainer"></div>
+            <div className="subProfilePicContainer">
+              <img className="profile" src={Profile} alt="" />
+            </div>
           </div>
         </div>
       </div>

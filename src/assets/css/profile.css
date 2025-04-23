@@ -35,12 +35,22 @@ span{
   gap: 0.5rem;
 }
 
+.profile{
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
 .infoContainer{
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nameContainer{
   font-size: 1rem;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: right;
@@ -107,7 +117,7 @@ span{
   width: 2.5rem;
   border-radius: 0.5rem;
   background-color: white;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.24);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
   /*laptop*/
@@ -211,6 +221,6 @@ span{
       width: 3rem;
       border-radius: 0.5rem;
       background-color: white;
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.24);
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
     }    
   }

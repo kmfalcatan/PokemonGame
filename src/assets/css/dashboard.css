@@ -124,7 +124,6 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
   display: flex;
   justify-content: center;
-  align-items: center;
   overflow: auto;
 }
 
@@ -139,8 +138,12 @@
   width: 90%;
 }
 
-.display{
+.chart{
   width: 100%;
+}
+
+.display{
+  width: 95%;
   gap: 0.5rem;
   display: flex;
   align-items: center;
@@ -167,6 +170,14 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
+.subTeams100{
+  width: 100%;
+  gap: 0.5rem;
+  outline: red dashed 1px;
+  display: flex;
+  flex-direction: row;
+}
+
 .historyDisplayContainer{
   width: 100%;
   display: flex;
@@ -181,6 +192,8 @@
   height: 100%;
   border-radius: 0.5rem;
   background-color: white;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -227,6 +240,7 @@
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  flex-direction: row;
   padding: 0.5rem 0;
 }
 
@@ -272,6 +286,6 @@
   }
 
   .subDisplayTeamContainer {
-    width: 100%;
+    width: 90%;
   }
 }

@@ -46,7 +46,7 @@ function Pokemon() {
   useEffect(() => {
     const fetchAllPokemon = async () => {
       try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500");
         const data = await res.json();
 
         const pokemonDetails = await Promise.all(
@@ -82,7 +82,7 @@ function Pokemon() {
         if (result.isConfirmed) {
           try {
             const teamData = {
-              team: selectedTeam, // Full Pokémon info included
+              team: selectedTeam, 
             };
   
             const response = await fetch("http://localhost:5000/teams", {
