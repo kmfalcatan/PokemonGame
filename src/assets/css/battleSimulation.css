@@ -49,9 +49,17 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
 
+.pokemonImg9{
+  width: 100%;
+  height: 100%;
+}
+
 .subPokemonHeader{
   height: 2.5rem;
   width: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
 }
@@ -276,7 +284,7 @@
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.144);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -397,7 +405,6 @@
 
 @media only screen and (min-width: 600px){
   .subPokemonInfoContainer6, .subPokemonInfoContainer4, .subPokemonInfoContainer5, .subPokemonInfoContainer7{
-    outline: red dashed 1px;
     font-size: 1.2rem;
   }
 
@@ -410,13 +417,11 @@
   }
 
   .start{
-    outline: red dashed 1px;
     width: 5rem;
     font-size: 1.2rem;
   }
 
   .status{
-    outline: red dashed 1px;
     font-size: 2rem;
   }
 }
