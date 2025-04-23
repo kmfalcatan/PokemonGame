@@ -132,7 +132,7 @@ function Battle() {
     // Fetch Pokémon details (adjust to your API endpoint)
     const fetchPokemons = async () => {
       try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
         const data = await res.json();
         const promises = data.results.map((pokemon) =>
           fetch(pokemon.url).then((res) => res.json())
