@@ -41,22 +41,58 @@
 .recordContainer{
   width: 95%;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   gap: 0.5rem;
   background-color: #E5FFE6;
   border-radius: 0.5rem;
-  border: solid #00FF11 1px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.recordContainer.win {
+  background: #e5ffe6;
+  border: solid #00ff11 1px;
+}
+
+.recordContainer.lose {
+  background: #ffe5e5;
+  border: solid#ff0000 1px;
+}
+
+.recordContainer.tie {
+  background: #fff9e5;
+  border: solid #ffcb05 1px;
 }
 
 .subRecordContainer{
-  width: 100%;
   padding: 0.5rem 0.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
   display: flex;
   justify-content: left;
   align-items: center;
   gap: 0.5rem;
+}
+
+.subTeams10{
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+}
+
+.playerPokemonContainer, .opponentPokemonContainer{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.date{
+  color: rgba(0, 0, 0, 0.349);
+  width: 100%;
+}
+
+.vsText{
+  font-size: 1.5rem;
 }
 
 .pointsContainer{
@@ -125,5 +161,16 @@
 
   .paginationContainer{
     display: flex;
+  }
+
+  .subTeams10{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.075);
+  }
+
+  .text1{
+    font-size: 1.2rem;
   }
 }

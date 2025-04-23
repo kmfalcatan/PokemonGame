@@ -4,6 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 function Dashboard() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -11,107 +13,113 @@ function Dashboard() {
   const [pokemonData, setPokemonData] = useState(null);
   const [prevPokemonData, setPrevPokemonData] = useState(null);
   const [savedTeams, setSavedTeams] = useState([]);
+  const [matches, setMatches] = useState([]);
 
-
-  // AOS init
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
   }, []);
 
-  // Fetch Pokémon list
   useEffect(() => {
-    const fetchPokemonList = async () => {
+    (async () => {
       try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500");
         const data = await res.json();
         setPokemonList(data.results.map(p => p.name));
       } catch (err) {
-        console.error("Error fetching Pokémon list:", err);
+        console.error(err);
       }
-    };
-    fetchPokemonList();
+    })();
   }, []);
 
   useEffect(() => {
-    const fetchTeams = async () => {
+    (async () => {
       try {
         const res = await fetch("http://localhost:5000/teams");
-        const data = await res.json();
-        setSavedTeams(data);
+        setSavedTeams(await res.json());
       } catch (err) {
-        console.error("Failed to fetch saved teams", err);
+        console.error(err);
       }
-    };
-  
-    fetchTeams();
-  }, []);  
+    })();
+  }, []);
 
-  // Fetch individual Pokémon data
   useEffect(() => {
-    if (pokemonList.length === 0) return;
+    axios.get("http://localhost:5000/matches")
+      .then(res => {
+        console.log("Raw match results:", res.data.map(m => m.result));
+        setMatches(res.data);
+      })
+      .catch(console.error);
+  }, []);
 
-    const fetchPokemonData = async () => {
-      try {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonList[currentIndex]}`);
-        const data = await res.json();
-        setPrevPokemonData(pokemonData); // Store current as previous before updating
-        setPokemonData(data);
-      } catch (err) {
-        console.error("Error fetching Pokémon:", err);
-      }
-    };
-    fetchPokemonData();
-  }, [currentIndex, pokemonList]);
-
-  // Auto-cycle Pokémon
   useEffect(() => {
-    if (pokemonList.length === 0) return;
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % pokemonList.length);
+    if (!pokemonList.length) return;
+    const iv = setInterval(() => {
+      setCurrentIndex(i => (i + 1) % pokemonList.length);
     }, 4000);
-    return () => clearInterval(interval);
+    return () => clearInterval(iv);
   }, [pokemonList]);
 
-  const displayData = pokemonData || prevPokemonData;
+  useEffect(() => {
+    if (!pokemonList.length) return;
+    (async () => {
+      try {
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemonList[currentIndex]}`
+        );
+        setPrevPokemonData(pokemonData);
+        setPokemonData(await res.json());
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, [currentIndex, pokemonList]);
 
+  const displayData = pokemonData || prevPokemonData;
   if (!displayData) return <p>Loading...</p>;
 
   const { name, id, types, sprites } = displayData;
-  const primaryType = types?.[0]?.type.name || "normal";
-
-  // Mapping of Pokémon types to background colors
+  const primaryType = types[0].type.name;
   const typeColors = {
-    normal: "#A8A77A",
-    fire: "#F08030",
-    water: "#6890F0",
-    electric: "#F8D030",
-    grass: "#78C850",
-    ice: "#98D8D8",
-    fighting: "#C03028",
-    poison: "#A040A0",
-    ground: "#E0C068",
-    flying: "#A890F0",
-    psychic: "#F85888",
-    bug: "#A8B820",
-    rock: "#B8A038",
-    ghost: "#705898",
-    dragon: "#7038F8",
-    dark: "#705848",
-    steel: "#B8B8D0",
-    fairy: "#F0B6BC",
+    normal: "#A8A77A", fire: "#F08030", water: "#6890F0",
+    electric: "#F8D030", grass: "#78C850", ice: "#98D8D8",
+    fighting: "#C03028", poison: "#A040A0", ground: "#E0C068",
+    flying: "#A890F0", psychic: "#F85888", bug: "#A8B820",
+    rock: "#B8A038", ghost: "#705898", dragon: "#7038F8",
+    dark: "#705848", steel: "#B8B8D0", fairy: "#F0B6BC",
   };
-
   const backgroundColor = typeColors[primaryType] || "#F5F5F5";
+
+  const resultCounts = matches.reduce(
+    (acc, m) => {
+      const r = m.result;
+      if (r === "win" || r === "loss" || r === "tie") {
+        acc[r] = (acc[r] || 0) + 1;
+      } else {
+        acc.other = (acc.other || 0) + 1;
+      }
+      return acc;
+    },
+    { win: 0, loss: 0, tie: 0, other: 0 }
+  );
+
+  const pieData = [
+    { name: "Wins",   value: resultCounts.win },
+    { name: "Losses", value: resultCounts.loss },
+    { name: "Ties",   value: resultCounts.tie },
+    ...(resultCounts.other > 0
+      ? [{ name: "Other", value: resultCounts.other }]
+      : []),
+  ];
+
+  const COLORS = ["#76c7c0", "#f08030", "#999", "#ccc"];
 
   return (
     <div className="dashboardContainer">
-      <div className="subDashboardContainer" data-aos="fide" data-aos-delay="300">
+      <div className="subDashboardContainer" data-aos="fade" data-aos-delay="300">
+        {/* Featured Pokémon */}
         <div className="favContainer">
           <div className="subFavContainer">
-            <div
-              className="fav"
-              style={{ backgroundColor }}
-            >
+            <div className="fav" style={{ backgroundColor }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={name}
@@ -124,100 +132,97 @@ function Dashboard() {
                   <div className="pokemonNameContainer">
                     <p>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
                   </div>
-
                   <div className="pokeId">
                     <p>#{id.toString().padStart(3, "0")}</p>
                   </div>
-
                   <div className="typeContainer">
-                    {types.map((typeObj, idx) => (
-                      <div key={idx} className="subTypeContainer">
-                        <p>{typeObj.type.name.charAt(0).toUpperCase() + typeObj.type.name.slice(1)}</p>
+                    {types.map((t, i) => (
+                      <div key={i} className="subTypeContainer">
+                        <p>
+                          {t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)}
+                        </p>
                       </div>
                     ))}
                   </div>
-
                   <div className="pokemonImgContainer">
                     <img
                       className="pokemonImg"
-                      src={sprites?.other?.["official-artwork"]?.front_default || PokemonImg}
+                      src={
+                        sprites.other["official-artwork"].front_default || PokemonImg
+                      }
                       alt={name}
                     />
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
-
-            <div className="titleContainer">
-              <p>Pokémons</p>
-            </div>
+            <div className="titleContainer"><p>Pokémons</p></div>
           </div>
 
+          {/* Pie Graph */}
           <div className="displayTeamContainer">
-            <div className="subDisplayTeamContainer">
-              <div className="display">
-              {savedTeams.map((teamData, teamIndex) => (
-                <div className="display" key={teamIndex}>
+            <div className="subHistoryDisplayContainer">
+              {matches.length ? (
+                <PieChart width={120} height={120}>
+                  <Pie
+                    data={pieData}
+                    dataKey="value"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={30}
+                    outerRadius={50}
+                    paddingAngle={2}
+                    stroke="none"
+                  >
+                    {pieData.map((_, idx) => (
+                      <Cell key={idx} fill={COLORS[idx]} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(v, name) => [`${v}`, name]} />
+                </PieChart>
+              ) : (
+                <p>Loading graph…</p>
+              )}
+            </div>
+            <div className="titleContainer"><p>Chart</p></div>
+          </div>
+        </div>
+
+        {/* Teams */}
+        <div className="historyDisplayContainer">
+          <div className="subDisplayTeamContainer">
+            <div className="display">
+              {savedTeams.map((team, ti) => (
+                <div className="display" key={ti}>
                   <div className="teamNumberContainer">
-                    <p>Team #{teamIndex + 0}</p>
+                    <p>Team #{ti + 1}</p>
                   </div>
-
                   <div className="teams">
-                    {teamData.team.map((pokemon, pokeIndex) => {
-                      const primaryType = pokemon.types?.[0]?.type?.name;
-                      const bgColor = typeColors[primaryType] || "#ccc";
-
+                    {team.team.map((p, pi) => {
+                      const bg = typeColors[p.types[0].type.name] || "#ccc";
                       return (
-                        <div className="subTeams" key={pokeIndex} style={{ backgroundColor: bgColor }}>
+                        <div
+                          className="subTeams"
+                          key={pi}
+                          style={{ backgroundColor: bg }}
+                        >
                           <img
                             src={
-                              pokemon.sprites?.other?.["official-artwork"]?.front_default ||
-                              pokemon.sprites?.front_default
+                              p.sprites.other["official-artwork"].front_default ||
+                              p.sprites.front_default
                             }
-                            alt={pokemon.name}
+                            alt={p.name}
                             className="pokemonImg"
                           />
                         </div>
                       );
                     })}
-
                   </div>
                 </div>
               ))}
-              </div>
-            </div>
-            <div className="titleContainer">
-              <p>Team</p>
             </div>
           </div>
-        </div>
-
-        {/* History stays unchanged */}
-        <div className="historyDisplayContainer">
-          <div className="subHistoryDisplayContainer">
-            <div className="history">
-              <div className="historyDisplayText">
-                <p>Team</p>
-              </div>
-              <div className="historyDisplayText">
-                <p>Status</p>
-              </div>
-            </div>
-
-            <div className="historyDisplay">
-              <div className="historyDisplay1">
-                <div className="subHistoryDisplay">
-                  <div className="subTeams1"></div>
-                </div>
-                <div className="battleHistory">
-                  <p>Loss</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="titleContainer">
-            <p>History</p>
-          </div>
+          <div className="titleContainer"><p>Teams</p></div>
         </div>
       </div>
     </div>

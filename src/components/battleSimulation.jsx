@@ -6,7 +6,6 @@ import 'aos/dist/aos.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 function BattleSimulation() {
   const [games, setGames] = useState([]);
   const [opponentPokemon, setOpponentPokemon] = useState([]);
@@ -14,51 +13,40 @@ function BattleSimulation() {
   const [round, setRound] = useState(0);
   const [statusText, setStatusText] = useState("Fight");
   const [scores, setScores] = useState([]);
-  const navigate = useNavigate();
   const [isBattleStarted, setIsBattleStarted] = useState(false);
-
+  const [finalResult, setFinalResult] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/games").then((res) => {
-      setGames(res.data);
-    });
+    axios.get("http://localhost:5000/games").then(res => setGames(res.data));
     AOS.init();
   }, []);
 
   useEffect(() => {
-    if (games.length > 0) {
-      const latestGame = games[games.length - 1];
-      const selected = latestGame.selectedPokemons || [];
-      setPlayerPokemon(selected);
+    if (games.length) {
+      setPlayerPokemon(games[games.length - 1].selectedPokemons || []);
     }
   }, [games]);
 
   useEffect(() => {
-    const generateOpponentTeam = async () => {
-      if (playerPokemon.length === 0) return;
-
-      const playerNames = playerPokemon.map(p => p.name);
-      const generatedOpponent = [];
-      const usedNames = new Set(playerNames);
-
-      while (generatedOpponent.length < 6) {
-        const randomId = Math.floor(Math.random() * 898) + 1;
+    if (!playerPokemon.length) return;
+    const used = new Set(playerPokemon.map(p => p.name));
+    const team = [];
+    (async () => {
+      while (team.length < 6) {
+        const id = Math.floor(Math.random() * 898) + 1;
         try {
-          const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
-          if (!usedNames.has(data.name)) {
-            generatedOpponent.push(data);
-            usedNames.add(data.name);
+          const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+          if (!used.has(data.name)) {
+            team.push(data);
+            used.add(data.name);
           }
-        } catch (error) {
-          console.error("Failed to fetch opponent Pokémon:", error);
-        }
+        } catch {}
       }
-
-      setOpponentPokemon(generatedOpponent);
-    };
-
-    generateOpponentTeam();
+      setOpponentPokemon(team);
+    })();
   }, [playerPokemon]);
+
 
   const typeColors = {
     normal: "#A8A77A", fire: "#F08030", water: "#6890F0", electric: "#F8D030",
@@ -67,76 +55,75 @@ function BattleSimulation() {
     rock: "#B8A038", ghost: "#705898", dragon: "#7038F8", dark: "#705848",
     steel: "#B8B8D0", fairy: "#F0B6BC",
   };
-
-  const getTypeBackgroundColor = (types) => {
-    const primaryType = types[0]?.type?.name;
-    return typeColors[primaryType] || "#FFFFFF";
-  };
-
-  const getScoreColor = (result) => {
-    if (result === "win") return "#4CAF50";
-    if (result === "lose") return "#F44336";
-    return "#FFC107";
-  };
+  const getTypeBackgroundColor = types => typeColors[types?.[0]?.type?.name] || "#FFF";
+  const getScoreColor = r => r === "win" ? "#4CAF50" : r === "lose" ? "#F44336" : "#FFC107";
 
   const startBattle = async () => {
     if (round >= 6 || playerPokemon.length < 6 || opponentPokemon.length < 6) return;
-  
-    setIsBattleStarted(true); // Set battle as started
-  
-    // Start the countdown
-    const countdown = ["3", "2", "1"];
-    for (let i = 0; i < countdown.length; i++) {
-      setStatusText(countdown[i]);
-      await new Promise(res => setTimeout(res, 500)); // 500ms delay between countdown
+    setIsBattleStarted(true);
+
+    for (let n of ["3", "2", "1"]) {
+      setStatusText(n);
+      await new Promise(r => setTimeout(r, 500));
     }
-  
-    // Battle begins after countdown
     setStatusText("Fighting...");
-    await new Promise(res => setTimeout(res, 1000)); // 1 second before battle starts
-  
-    // Function to process each round automatically
-    const autoFight = async (currentRound) => {
-      if (currentRound >= 6) {
+    await new Promise(r => setTimeout(r, 1000));
+
+    const autoFight = async i => {
+      if (i >= 6) {
         setStatusText("Battle Over");
-        return; // Stop after 6 rounds
+        return;
       }
-  
-      const player = playerPokemon[currentRound];
-      const opponent = opponentPokemon[currentRound];
-  
-      const playerStats = {
-        hp: player.stats[0].base_stat,
-        attack: player.stats[1].base_stat,
-        speed: player.stats[5].base_stat,
-      };
-      const opponentStats = {
-        hp: opponent.stats[0].base_stat,
-        attack: opponent.stats[1].base_stat,
-        speed: opponent.stats[5].base_stat,
-      };
-  
-      let playerPoints = 0, opponentPoints = 0;
-      ["hp", "attack", "speed"].forEach(stat => {
-        if (playerStats[stat] > opponentStats[stat]) playerPoints++;
-        else if (playerStats[stat] < opponentStats[stat]) opponentPoints++;
+    
+      const p = playerPokemon[i], o = opponentPokemon[i];
+      const ps = { hp: p.stats[0].base_stat, attack: p.stats[1].base_stat, speed: p.stats[5].base_stat };
+      const os = { hp: o.stats[0].base_stat, attack: o.stats[1].base_stat, speed: o.stats[5].base_stat };
+    
+      let pp = 0, op = 0;
+      for (let stat of ["hp","attack","speed"]) {
+        if (ps[stat] > os[stat]) pp++;
+        else if (ps[stat] < os[stat]) op++;
+      }
+      const result = pp > op ? "win" : pp < op ? "lose" : "tie";
+    
+      setRound(i+1);
+      setStatusText(
+        result === "win"  ? `${p.name} Wins!` :
+        result === "lose" ? `${o.name} Wins!` :
+        "It's a Tie!"
+      );
+    
+      setScores(prev => {
+        const next = [...prev, result];
+    
+        if (i === 5) {
+          const wins   = next.filter(x => x === "win").length;
+          const losses = next.filter(x => x === "lose").length;
+          const final  = wins > losses ? "You Won!!" :
+                         losses > wins ? "You Lost" :
+                         "It's a Tie!";
+          setFinalResult(final);
+    
+          const history = {
+            playerTeam:   playerPokemon.map(p => p.name),
+            opponentTeam: opponentPokemon.map(p => p.name),
+            date:         new Date().toISOString(),
+            result:       wins > losses ? "win" : losses > wins ? "lose" : "tie"
+          };
+          axios.post("http://localhost:5000/matches", history)
+            .catch(err => console.error("Save match failed:", err));
+        }
+    
+        return next;
       });
-  
-      const result = playerPoints > opponentPoints ? "win" : playerPoints < opponentPoints ? "lose" : "tie";
-  
-      setScores(prev => [...prev, result]);
-      setRound(prev => prev + 1);
-      setStatusText(result === "win" ? `${player.name} Wins!` : result === "lose" ? `${opponent.name} Wins!` : "It's a Tie!");
-  
-      // Delay for next round (you can adjust this time)
-      await new Promise(res => setTimeout(res, 2000)); // 2 seconds delay before next round
-      autoFight(currentRound + 1); // Automatically proceed to next round
-    };
-  
-    // Start automatic rounds after countdown
+    
+      await new Promise(r => setTimeout(r, 2000));
+      autoFight(i+1);
+    };    
+
     autoFight(round);
   };
-  
+
   return (
     <div className="battleSimulationContainer" data-aos="fade" data-aos-delay="300">
       <div className="pokemonHeaderContainer">
@@ -144,7 +131,7 @@ function BattleSimulation() {
           <div className="pokemonHeader">
             {games.length > 0 && games[games.length - 1].selectedPokemons.map((pokemon, index) => {
               const primaryType = pokemon.types?.[0]?.type?.name;
-              const bgColor = typeColors[primaryType] || "#ccc"; // fallback to gray if type not found
+              const bgColor = typeColors[primaryType] || "#ccc"; 
 
               return (
                 <div
@@ -168,42 +155,42 @@ function BattleSimulation() {
           </div>
           
           <div className="pokemonHeader1">
-      {Array.isArray(opponentPokemon) && opponentPokemon.map((pokemon, index) => (
-        <div
-          key={index}
-          className="subPokemonHeader"
-          style={{
-            backgroundColor: getTypeBackgroundColor(pokemon.types),
-          }}
-        >
-          <img
-            src={pokemon.sprites?.other?.["official-artwork"]?.front_default || PokemonImg}
-            alt={pokemon.name || "pokemon"}
-            className="pokemonImg9"
-          />
+            {Array.isArray(opponentPokemon) && opponentPokemon.map((pokemon, index) => (
+              <div
+                key={index}
+                className="subPokemonHeader"
+                style={{
+                  backgroundColor: getTypeBackgroundColor(pokemon.types),
+                }}
+              >
+                <img
+                  src={pokemon.sprites?.other?.["official-artwork"]?.front_default || PokemonImg}
+                  alt={pokemon.name || "pokemon"}
+                  className="pokemonImg9"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-
-        </div>
-
 
         <div className="scoreContainer">
-        <div className="subScoreContainer">
-          {scores.map((result, idx) => (
-            <div key={idx} className="score" style={{ backgroundColor: getScoreColor(result) }} />
-          ))}
+          <div className="subScoreContainer">
+            {scores.map((result, idx) => (
+              <div key={idx} className="score" style={{ backgroundColor: getScoreColor(result) }} />
+            ))}
+          </div>
+
+          <div className="subScoreContainer1" />
+          
+          <div className="subScoreContainer2">
+            {scores.map((result, idx) => {
+              const opponentResult = result === "win" ? "lose" : result === "lose" ? "win" : "tie";
+              return (
+                <div key={idx} className="score" style={{ backgroundColor: getScoreColor(opponentResult) }} />
+              );
+            })}
+          </div>
         </div>
-        <div className="subScoreContainer1" />
-        <div className="subScoreContainer2">
-          {scores.map((result, idx) => {
-            const opponentResult = result === "win" ? "lose" : result === "lose" ? "win" : "tie";
-            return (
-              <div key={idx} className="score" style={{ backgroundColor: getScoreColor(opponentResult) }} />
-            );
-          })}
-        </div>
-      </div>
       </div>
 
       <div className="battleSimulation">
@@ -254,16 +241,16 @@ function BattleSimulation() {
         </div>
 
         <div className="subBattleSimulation1">
-    <p className="status">{statusText}</p>
-    <div className="buttonContainer3">
-    <button className="start" onClick={startBattle}>Start</button>
-      {!isBattleStarted && (  // Show buttons only if battle hasn't started
-        <>
-          <button className="start" onClick={() => navigate("/battle")}>Cancel</button>
-        </>
-      )}
-    </div>
-  </div>
+          <p className="status">{statusText}</p>
+          <div className="buttonContainer3">
+            {!isBattleStarted && (  
+              <>
+                <button className="start" onClick={startBattle}>Start</button>
+                <button className="start" onClick={() => navigate("/battle")}>Cancel</button>
+              </>
+            )}
+          </div>
+        </div>
 
         <div className="subBattleSimulation">
           {opponentPokemon[round] && (
@@ -314,51 +301,21 @@ function BattleSimulation() {
       </div>
 
 
-      <div className="resultContainer">
-        <div className="subResultContainer">
-          <div className="resultText">
-            <p>You Won!!</p>
-          </div>
-
-          <div className="resultPointsContainer">
-            <div className="subResultPointsContainer">
-              <div className="result">
-                <p>Exp:</p>
-                <p>+20</p>
+      {finalResult && (
+        <div className="resultContainer">
+          <div className="subResultContainer">
+            <div className="resultText">
+              <p>{finalResult}</p>
+            </div>
+            <div className="buttonContainer5">
+              <div className="subButtonContainer5">
+                <button className="button5" onClick={() => window.location.reload()}>Play Again</button>
+                <button className="button5" onClick={() => navigate("/dashboard")}>Home</button>
               </div>
-            </div>
-
-            <div className="subResultPointsContainer">
-              <div className="result">
-                <p>Points:</p>
-                <p>0</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="addPointsContainer">
-            <div className="subAddPointsContainer">
-              <div className="addLvlContainer">
-                <div className="subAddLvlContainer">
-
-                </div>
-              </div>
-            </div>
-
-            <div className="pointsTextContainer">
-              <p>Lvl: 3</p>
-              <p>50/100</p>
-            </div>
-          </div>
-
-          <div className="buttonContainer5">
-            <div className="subButtonContainer5">
-              <button className="button5">Play Again</button>
-              <button className="button5">Home</button>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
