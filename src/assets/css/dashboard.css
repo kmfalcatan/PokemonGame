@@ -173,7 +173,6 @@
 .subTeams100{
   width: 100%;
   gap: 0.5rem;
-  outline: red dashed 1px;
   display: flex;
   flex-direction: row;
 }
